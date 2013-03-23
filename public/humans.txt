@@ -1,0 +1,11 @@
+/* TEAM */ 
+	Owner & Developer: Karl Monaghan 
+	Contact: karl AT crayonsandbrownpaper DOT com
+	Twitter: @karlmonaghan
+	Blog: http://karlmonaghan.com
+	From: Dublin, Ireland 
+
+/* SITE */
+	Language:English
+	Components: Bootstrap
+	Software: vim
