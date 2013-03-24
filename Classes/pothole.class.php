@@ -16,12 +16,15 @@ class Pothole extends Object
 			return false;
 		}
 		
-		return $this->_save();
+		$this->_columns['report_created'] = time();
+		
+		return $this->save();
 	}
 	
 	private function _validate($details)
 	{
-		$result = false;
+		$result = true;
+		$this->_error = '';
 		
 		if (filter_var($details['report-email'], FILTER_VALIDATE_EMAIL)) 
 		{
@@ -29,7 +32,21 @@ class Pothole extends Object
 		}
 		else
 		{
+			$this->_error = 'Invalid Email/n';
 			$result = false;
+		}
+		
+		$now = time();
+		$potholedate = strtotime($details['report-date']);
+		
+		if ($potholedate > $now)
+		{
+			$this->_error .= 'Date is in the future!/n';
+			$result = false;
+		}
+		else
+		{
+			$this->_columns['report_date'] = $potholedate;
 		}
 		
 		$options = array(
@@ -45,6 +62,7 @@ class Pothole extends Object
 		}
 		else
 		{
+			$this->_error .= "Invalid latitude/n";
 			$result = false;
 		}
 		
@@ -61,9 +79,27 @@ class Pothole extends Object
 		}
 		else
 		{
+			$this->_error .= "Invalid longitude/n";
 			$result = false;
 		}
 		
+		$options = array(
+				'options' => array(
+						'min_range' => 1,
+						'max_range' => 5,
+				)
+		);
+		
+		if (filter_var($details['bad'], FILTER_VALIDATE_INT, $options))
+		{
+			$this->_columns['rating'] = $details['bad'];
+		}
+		else
+		{
+			$this->_error .= "Please rate the pothole/n";
+			$result = false;
+		}
+
 		return $result;
 	}
 }

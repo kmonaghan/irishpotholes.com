@@ -141,12 +141,12 @@ class mysql
 		$queryString = "INSERT INTO $table SET ";
 		
 		$statementArray = array();
-		
+
 		foreach ($values as $item)
 		{
 			$statementArray[] = $this->statement($item);
 		}
-		
+
 		if (count($statementArray))
 		{
 			$queryString .= implode(' , ', $statementArray);

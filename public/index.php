@@ -2,32 +2,46 @@
 include 'boot.php';
 include 'header.php';
 
+$message = false;
+
 if (count($_POST))
 {
 	$pothole = new Pothole();
 	
 	if ($pothole->create($_POST))
 	{
-		
+		$type = 'success';
+		$message = 'Thanks for adding a pothole';
 	}
 	else
 	{
-		
+		$type = 'error';
+		$message = $pothole->getError();
 	}
 }
 ?>
-
         <div class="page-header">
           <h1>Irish Potholes</h1>
         </div>
         <p class="lead">Irish Potholes</p>
         <p>Some more details</p>
-
+<?php
+if ($message)
+{
+	?>
+<div class="alert alert-<?php echo $type; ?>">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<?php echo $message;?>
+</div>
+<?php
+}
+?>
         <div class="row-fluid">
 			<form method="POST" action="">
-				<input type="hidden" name="lat" value="" />
-				<input type="hidden" name="lng" value="" />
-
+				<input type="hidden" id="lat" name="lat" value="" />
+				<input type="hidden" id="lng" name="lng" value="" />
+				<input type="hidden" id="image" name="image" value="" />
+				
 					<legend>Pothole Details</legend>
 					<div class="input-wrapper">
 						<label>Your Email</label>
@@ -43,8 +57,8 @@ if (count($_POST))
 		        	</div>
 		        	<div class="input-wrapper">
 						<label>When did you encounter it?</label>
-						<div class="input-append date datepicker" data-date="<?php echo Date('d/m/Y'); ?>" data-date-format="dd/mm/yyyy">
-		    				<input size="16" type="text" value="<?php echo Date('d/m/Y'); ?>" readonly><span class="add-on"><i class="icon-calendar"></i></span>
+						<div class="input-append date datepicker" data-date="<?php echo Date('d-m-Y'); ?>" data-date-format="dd-mm-yyyy">
+		    				<input size="16" type="text" value="<?php echo Date('d-m-Y'); ?>" id="report-date" name="report-date" readonly><span class="add-on"><i class="icon-calendar"></i></span>
 						</div>
 					</div>
 					<div class="input-wrapper">
@@ -61,7 +75,6 @@ if (count($_POST))
 					<div class="form-actions">
 						<button type="submit" class="btn">Add Pothole</button>
 					</div>
-
 			</form>
 		</div>
       </div>
@@ -110,6 +123,7 @@ if (count($_POST))
 					if (response.success)
 					{
                     	console.log('filename: ' + response.filename);
+                    	$('#image').val(response.filename);
 					}
                 }
             }
@@ -117,21 +131,11 @@ if (count($_POST))
       }
 
 	$(function() {
-		if(navigator.geolocation) 
-		{
-			navigator.geolocation.getCurrentPosition(function(position) {
-				var pos = new google.maps.LatLng(position.coords.latitude,
-									 position.coords.longitude);
-
-				map.setCenter(pos);
-			});
-		}
-		
 		createUploader();
 
 		$('.datepicker').datepicker({
-			format: 'dd/mm/yyyy',
-			endDate: '<?php echo Date('d/m/Y');?>',
+			format: 'dd-mm-yyyy',
+			endDate: '<?php echo Date('d-m-Y');?>',
 			todayHighlight: true,
 			autoclose: true,
 		});
@@ -145,22 +149,37 @@ if (count($_POST))
 				typeaheaddelay: 1000,
 				mapOptions: {
 					zoom:16,
-					center: new google.maps.LatLng(52.5122, 13.4194)
+					center: new google.maps.LatLng(53.4239331, -7.940689799999973)
 				}
 		});
 
 		addresspickerMap.on("addressChanged", function(evt, address) {
- 			console.dir(address);
-			console(address.LatLng);
+ 			//console.dir(address);
+			$('#lat').val(address.geometry.location.lat());
+			$('#lng').val(address.geometry.location.lng());
 		});
         
 		addresspickerMap.on("positionChanged", function(evt, markerPosition) {
+			console.log('positionChanged');
 			markerPosition.getAddress( function(address) {
 				if (address) {
 					$( "#addresspicker_map").val(address.formatted_address);
 				}
 			});
+
+			$('#lat').val(markerPosition.lat());
+			$('#lng').val(markerPosition.lng());
 		});
+
+		if(navigator.geolocation) 
+		{
+			navigator.geolocation.getCurrentPosition(function(position) {
+				var pos = new google.maps.LatLng(position.coords.latitude,
+									 position.coords.longitude);
+				//var map = addresspickerMap.map;
+				//map.setCenter(pos);
+			});
+		}
 	});
 </script>
 <?php
