@@ -129,7 +129,7 @@ class qqFileUploader {
         
         $this->uploadName = md5($filename . time()) . $ext;
 		
-        if ($this->file->save($uploadDirectory . DIRECTORY_SEPARATOR . $filename . $ext)){
+        if ($this->file->save($uploadDirectory . DIRECTORY_SEPARATOR . $this->uploadName)){
             return array('success'=>true);
         } else {
             return array('error'=> 'Could not save uploaded file.' .
