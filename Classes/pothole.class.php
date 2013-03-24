@@ -1,11 +1,8 @@
 <?php
-class Pothole 
+class Pothole extends Object
 {
-	private $_email;
-	private $_date;
-	private $_lat;
-	private $_lng;
-	
+	protected $_table = 'pothole';
+	protected $_index = 'pothole_id';
 	
 	function __construct() 
 	{
@@ -28,7 +25,7 @@ class Pothole
 		
 		if (filter_var($details['report-email'], FILTER_VALIDATE_EMAIL)) 
 		{
-			$this->_email = $details['report-email'];
+			$this->_columns['email'] = $details['report-email'];
 		}
 		else
 		{
@@ -44,7 +41,7 @@ class Pothole
 		
 		if (filter_var($details['lat'], FILTER_VALIDATE_FLOAT, $options))
 		{
-			$this->_lat = $details['lat'];
+			$this->_columns['lat'] = $details['lat'];
 		}
 		else
 		{
@@ -60,7 +57,7 @@ class Pothole
 		
 		if (filter_var($details['lng'], FILTER_VALIDATE_FLOAT, $options))
 		{
-			$this->_lng = $details['lng'];
+			$this->_columns['lng'] = $details['lng'];
 		}
 		else
 		{
@@ -68,10 +65,5 @@ class Pothole
 		}
 		
 		return $result;
-	}
-	
-	private function _save()
-	{
-		
 	}
 }
