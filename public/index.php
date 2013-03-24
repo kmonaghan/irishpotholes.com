@@ -1,44 +1,22 @@
 <?php 
 include 'boot.php';
+include 'header.php';
+
+if (count($_POST))
+{
+	$pothole = new Pothole();
+	
+	if ($pothole->create($_POST))
+	{
+		
+	}
+	else
+	{
+		
+	}
+}
 ?>
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Irish Potholes</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="humans.txt">
 
-    <!-- CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-	<link href="/css/prettyCheckable.css" rel="stylesheet">
-	<link href="/css/datepicker.css" rel="stylesheet">
-	<link href="/css/fineuploader-3.3.0.css" rel="stylesheet">
-	<link href="/css/pothole.css" rel="stylesheet">
-    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="/js/html5shiv.js"></script>
-    <![endif]-->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="/ico/favicon.png">
-  </head>
-
-  <body>
-
-
-    <!-- Part 1: Wrap all page content here -->
-    <div id="wrap">
-
-      <!-- Begin page content -->
-      <div class="container-fluid">
         <div class="page-header">
           <h1>Irish Potholes</h1>
         </div>
@@ -87,15 +65,6 @@ include 'boot.php';
 			</form>
 		</div>
       </div>
-
-      <div id="push"></div>
-    </div>
-
-    <div id="footer">
-      <div class="container-fluid">
-        <p class="muted credit">Built by <a href="http://karlmonaghan.com">Karl Monaghan</a> from an idea by <a href="https://twitter.com/AaronMcAllorum">Aaron McAllorum</a>.&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/contact">Get in touch</a>&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/">About</a>&nbsp;|&nbsp;<a href="https://github.com/kmonaghan/irishpotholes.com">Code</a></p>
-      </div>
-    </div>
 
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -194,6 +163,5 @@ include 'boot.php';
 		});
 	});
 </script>
-  </body>
-</html>
-
+<?php
+include 'footer.php';
