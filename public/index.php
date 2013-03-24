@@ -10,8 +10,8 @@ if (count($_POST))
 	
 	if ($pothole->create($_POST))
 	{
-		$type = 'success';
-		$message = 'Thanks for adding a pothole';
+		header('Location: /pothole.php?pothole_id=' . $pothole->get('pothole_id'));
+		exit;
 	}
 	else
 	{

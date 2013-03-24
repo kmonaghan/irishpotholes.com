@@ -4,11 +4,6 @@ class Pothole extends Object
 	protected $_table = 'pothole';
 	protected $_index = 'pothole_id';
 	
-	function __construct() 
-	{
-		
-	}
-	
 	public function create($details)
 	{
 		if (!$this->_validate($details))

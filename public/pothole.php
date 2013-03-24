@@ -10,6 +10,6 @@ if (!$pothole->get('pothole_id'))
 	exit();
 }
 
-var_dump($pothole->get());
+var_dump($pothole->getAll());
 
 include 'footer.php';
