@@ -1,6 +1,5 @@
 <?php
 include 'boot.php';
-include '/home/irishpotholes.com/Classes/php.php';
 
 $allowedExtensions = array('png','jpg','jpeg','gif');
 $sizeLimit = 10 * 1024 * 1024;
