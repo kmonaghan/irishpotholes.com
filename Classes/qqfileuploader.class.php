@@ -129,7 +129,12 @@ class qqFileUploader {
         
         $this->uploadName = md5($filename . time()) . $ext;
 		
-        if ($this->file->save($uploadDirectory . DIRECTORY_SEPARATOR . $this->uploadName)){
+        if ($this->file->save($uploadDirectory . DIRECTORY_SEPARATOR . $this->uploadName))
+        {
+        	$mapper = new ImageMapper();
+        	
+        	$mapper->addImage($this->uploadName);
+        	
             return array('success'=>true);
         } else {
             return array('error'=> 'Could not save uploaded file.' .
