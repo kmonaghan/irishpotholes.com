@@ -1,4 +1,6 @@
 <?php
+require_once '/home/irishpotholes.com/vendor/htmlpurifier/library/HTMLPurifier.auto.php';
+
 class Pothole extends Object
 {
 	protected $_table = 'pothole';
@@ -13,7 +15,31 @@ class Pothole extends Object
 		
 		$this->_columns['report_created'] = time();
 		
-		return $this->save();
+		$potholeId = $this->save();
+		
+		if (!$potholeId)
+		{
+			return false;
+		}
+		
+		if (isset($details['images']))
+		{	
+			$mapper = new ImageMapper();
+			
+			foreach($details['images'] as $filename)
+			{
+				$file = $mapper->getByName($filename);
+	
+				if ($file)
+				{
+					$file->set('pothole_id', $potholeId);
+				
+					$file->save();
+				}
+			}
+		}
+		
+		return $potholeId;
 	}
 	
 	private function _validate($details)
@@ -21,6 +47,11 @@ class Pothole extends Object
 		$result = true;
 		$this->_error = '';
 		
+		/*
+		$config = HTMLPurifier_Config::createDefault();
+		$config->set('HTML.Allowed', 'b,i.em.strong');
+		$purifier = new HTMLPurifier($config);
+		*/
 		if (filter_var($details['report-email'], FILTER_VALIDATE_EMAIL)) 
 		{
 			$this->_columns['email'] = $details['report-email'];
@@ -95,6 +126,34 @@ class Pothole extends Object
 			$result = false;
 		}
 
+		if (isset($details['report-nick']) && $details['report-nick'])
+		{
+			$this->_columns['nickname'] = $details['report-nick']; //$purifier->purify($details['report-nick']);
+		}
+		else
+		{
+			$this->_error .= "Please enter a nickname/n";
+			$result = false;
+		}
+		
+		if (isset($details['report-description']))
+		{
+			$this->_columns['description'] = $details['report-description']; //$purifier->purify($details['report-description']);
+		}
 		return $result;
+	}
+	
+	function getImages()
+	{
+		$mapper = new ImageMapper();
+		
+		return $mapper->getByPothole($this->get('pothole_id'));
+	}
+	
+	function getFirstImage()
+	{
+		$mapper = new ImageMapper();
+		
+		return $mapper->getByPothole($this->get('pothole_id'), true);
 	}
 }

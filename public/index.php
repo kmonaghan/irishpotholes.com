@@ -7,7 +7,7 @@ $message = false;
 if (count($_POST))
 {
 	$pothole = new Pothole();
-	
+
 	if ($pothole->create($_POST))
 	{
 		header('Location: /pothole.php?pothole_id=' . $pothole->get('pothole_id'));
@@ -20,32 +20,19 @@ if (count($_POST))
 	}
 }
 ?>
-        <div class="page-header">
-          <h1>Irish Potholes</h1>
-        </div>
-        <p class="lead">Irish Potholes</p>
-        <p>Some more details</p>
-<?php
-if ($message)
-{
-	?>
-<div class="alert alert-<?php echo $type; ?>">
-	<button type="button" class="close" data-dismiss="alert">&times;</button>
-	<?php echo $message;?>
-</div>
-<?php
-}
-?>
         <div class="row-fluid">
-			<form method="POST" action="">
+			<form method="POST" action="" id="pothole-form">
 				<input type="hidden" id="lat" name="lat" value="" />
 				<input type="hidden" id="lng" name="lng" value="" />
-				<input type="hidden" id="image" name="image" value="" />
 				
 					<legend>Pothole Details</legend>
 					<div class="input-wrapper">
 						<label>Your Email</label>
 						<input type="email" id="report-email" name="report-email" required>
+					</div>
+					<div class="input-wrapper">
+						<label>A nickname</label>
+						<input type="text" id="report-nick" name="report-nick" required>
 					</div>
 					<div class="input-wrapper">
 		    			<label>Where's the pothole? </label>
@@ -70,6 +57,10 @@ if ($message)
 								<input type="radio" class="pothole-radio" value="5" id="bad-4" name="bad" data-label="5" />
 					</div>
 					<div class="input-wrapper">
+						<label>Tell us a bit more about it</label>
+						<textarea id="report-description" name="report-description" rows="4"></textarea>
+					</div>
+					<div class="input-wrapper">
 						<div id="bootstrapped-fine-uploader"></div>
 					</div>
 					<div class="form-actions">
@@ -77,7 +68,7 @@ if ($message)
 					</div>
 			</form>
 		</div>
-      </div>
+	</div>
 
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -103,7 +94,7 @@ if ($message)
             		endpoint: 'image_uploader.php'
           	},
           	validation: {
-          		allowedExtensions: ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG', 'gif', 'GIF']
+          		allowedExtensions: ['png', 'PNG', 'jpg', 'JPG', 'jpeg', 'JPEG']
           	},
           	text: {
             		uploadButton: '<i class="icon-upload icon-white"></i> Upload a picture'
@@ -123,7 +114,7 @@ if ($message)
 					if (response.success)
 					{
                     	console.log('filename: ' + response.filename);
-                    	$('#image').val(response.filename);
+                    	$('#pothole-form').append('<input type="hidden" name="images[]" value="' + response.filename + '" />');
 					}
                 }
             }
