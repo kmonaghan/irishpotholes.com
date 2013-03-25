@@ -45,6 +45,8 @@ class mysql
 	{
 		$result = $this->execute($query);
 
+		$return = false;
+		
 		if ($single)
 		{
 			$return = $result->fetch_assoc();
