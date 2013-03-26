@@ -46,7 +46,7 @@
 	</div>
 
 	<div id="wrap">
-		<div class="container-fluid">
+		<div id="main" class="container-fluid">
 <?php
 				if (isset($message) && $message)
 				{
