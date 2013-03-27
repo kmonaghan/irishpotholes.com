@@ -24,8 +24,8 @@ function createUploader() {
                 onComplete: function(id, name, response) {
                                         if (response.success)
                                         {
-                        console.log('filename: ' + response.filename);
                         $('#pothole-form').append('<input type="hidden" name="images[]" value="' + response.filename + '" />');
+			$('#add-pothole-button').removeAttr("disabled");
                                         }
                 }
             }
