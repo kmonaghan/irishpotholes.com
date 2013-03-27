@@ -42,6 +42,7 @@ class ImageMapper extends Mapper
 
 		$source = $this->resizeImage($filename, $width, $height, 300, 300);
 
+		$source = $this->resizeImage($filename, $width, $height, 600, 600);
 	}
 	
 	public function resizeImage($file, $width, $height, $maxWidth = MAX_DIMENSION, $maxHeight = MAX_DIMENSION)
