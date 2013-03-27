@@ -1,14 +1,15 @@
 <?php
 
 ?>
-      <div id="push"></div>
-    </div>
+			<div id="push"></div>
+    		</div>
+	</div>
+	<div id="footer">
+      		<div class="container">
+        		<p class="muted credit">Built by <a href="http://karlmonaghan.com">Karl Monaghan</a> from an idea by <a href="https://twitter.com/AaronMcAllorum">Aaron McAllorum</a>.&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/contact">Get in touch</a>&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/">About</a>&nbsp;|&nbsp;<a href="https://github.com/kmonaghan/irishpotholes.com">Code</a></p>
+      		</div>
+    	</div>
 
-    <div id="footer">
-      <div class="container-fluid">
-        <p class="muted credit">Built by <a href="http://karlmonaghan.com">Karl Monaghan</a> from an idea by <a href="https://twitter.com/AaronMcAllorum">Aaron McAllorum</a>.&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/contact">Get in touch</a>&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/">About</a>&nbsp;|&nbsp;<a href="https://github.com/kmonaghan/irishpotholes.com">Code</a></p>
-      </div>
-    </div>
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src="/js/bootstrap.js"></script>

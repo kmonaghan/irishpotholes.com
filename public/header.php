@@ -32,21 +32,20 @@
 	</head>
 
 	<body>
-	<div class="navbar navbar-static-top">
-		<div class="navbar-inner">
-			<div class="container">
-				<a class="brand" href="/">Irish Potholes</a>
-				<ul class="nav">
-                    <li><a href="/">Add</a></li>
-                    <li><a href="/potholes.php">All</a></li>
-                    <li><a href="/about.php">About</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-
 	<div id="wrap">
-		<div id="main" class="container-fluid">
+		<div class="navbar navbar-fixed-top">
+                	<div class="navbar-inner">
+                        	<div class="container">
+                                	<a class="brand" href="/">Irish Potholes</a>
+                                	<ul class="nav">
+                    				<li><a href="/">Add</a></li>
+                    				<li><a href="/potholes.php">All</a></li>
+                    				<li><a href="/about.php">About</a></li>
+                                	</ul>
+                        	</div>
+                	</div>
+       		</div>
+		<div id="main" class="container">
 <?php
 				if (isset($message) && $message)
 				{
