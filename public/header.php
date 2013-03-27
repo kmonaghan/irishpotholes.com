@@ -15,9 +15,9 @@
 	<link href="/css/prettyCheckable.css" rel="stylesheet">
 	<link href="/css/datepicker.css" rel="stylesheet">
 	<link href="/css/fineuploader-3.3.0.css" rel="stylesheet">
-	<link href="/css/pothole.css" rel="stylesheet">
 	<link href="/css/bootstrap-responsive.css" rel="stylesheet">
-
+	<link href="/css/pothole.css?v=<?php echo VERSION;?>" rel="stylesheet">
+	
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
 	<script src="/js/html5shiv.js"></script>
