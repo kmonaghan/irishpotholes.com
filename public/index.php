@@ -27,23 +27,23 @@ if (count($_POST))
 			<fieldset>	
 					<legend>Pothole Details</legend>
 					<div class="input-wrapper">
-						<label>Your Email</label>
-						<input type="email" id="report-email" name="report-email" required>
+						<label class="visible-desktop">Your Email</label>
+						<input class="input-xlarge" type="email" id="report-email" name="report-email" required placeholder="Email address">
 					</div>
 					<div class="input-wrapper">
-						<label>A nickname</label>
-						<input type="text" id="report-nick" name="report-nick" required>
+						<label class="visible-desktop">A nickname</label>
+						<input class="input-xlarge" type="text" id="report-nick" name="report-nick" required placeholder="Nickname">
 					</div>
 					<div class="input-wrapper">
-		    			<label>Where's the pothole? </label>
-		        		<input type="text" id="addresspicker_map" />
+		    			<label class="visible-desktop">Where's the pothole? </label>
+		        		<input class="input-xlarge" type="text" id="addresspicker_map" placeholder="Where is it?"/>
 		        		<div style="width:280px;height:300px;margin-top:20px">
 		            			<div id="map_canvas" style="width:100%; height:100%"></div>
 		            			<div id="location" class=""></div>
 		        		</div>
 		        	</div>
 		        	<div class="input-wrapper">
-						<label>When did you encounter it?</label>
+						<label class="visible-desktop">When did you encounter it?</label>
 						<div class="input-append date datepicker" data-date="<?php echo Date('d-m-Y'); ?>" data-date-format="dd-mm-yyyy">
 		    				<input size="16" type="text" value="<?php echo Date('d-m-Y'); ?>" id="report-date" name="report-date" readonly><span class="add-on"><i class="icon-calendar"></i></span>
 						</div>
@@ -57,8 +57,8 @@ if (count($_POST))
 								<input type="radio" class="pothole-radio" value="5" id="bad-4" name="bad" data-label="5" />
 					</div>
 					<div class="input-wrapper">
-						<label>Tell us a bit more about it</label>
-						<textarea id="report-description" name="report-description" rows="4"></textarea>
+						<label class="visible-desktop">Tell us a bit more about it</label>
+						<textarea class="input-xlarge" id="report-description" name="report-description" rows="4" placeholder="Description"></textarea>
 					</div>
 					<div class="input-wrapper">
 						<div id="bootstrapped-fine-uploader"></div>
@@ -69,7 +69,6 @@ if (count($_POST))
 				</fieldset>
 			</form>
 		</div>
-	</div>
 <?php
 $js = array('add', 'jquery.fineuploader-3.3.0', 'bootstrap-datepicker', 'prettyCheckable', 'jquery.addresspicker', 'bootstrap-typeahead');
 include 'footer.php';
