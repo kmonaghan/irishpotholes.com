@@ -21,10 +21,10 @@ if (count($_POST))
 }
 ?>
         <div class="row-fluid">
-			<form method="POST" action="" id="pothole-form">
+			<form method="POST" action="/index.php" id="pothole-form">
 				<input type="hidden" id="lat" name="lat" value="" />
 				<input type="hidden" id="lng" name="lng" value="" />
-				
+			<fieldset>	
 					<legend>Pothole Details</legend>
 					<div class="input-wrapper">
 						<label>Your Email</label>
@@ -64,8 +64,9 @@ if (count($_POST))
 						<div id="bootstrapped-fine-uploader"></div>
 					</div>
 					<div class="form-actions">
-						<button type="submit" class="btn">Add Pothole</button>
+						<button id="add-pothole-button" disabled="disabled" type="submit" class="btn btn-primary">Add Pothole</button>
 					</div>
+				</fieldset>
 			</form>
 		</div>
 	</div>
