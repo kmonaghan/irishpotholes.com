@@ -1,3 +1,5 @@
+var map;
+
 function createUploader() {
                 var uploader = new qq.FineUploader({
                         element: document.getElementById('bootstrapped-fine-uploader'),
@@ -50,7 +52,7 @@ function createUploader() {
                 });
 
                 $('input.pothole-radio').prettyCheckable();
-
+/*
                 var addresspickerMap = $( "#addresspicker_map" ).addresspicker(
                 {
                                 regionBias: "ie",
@@ -79,14 +81,39 @@ function createUploader() {
                         $('#lat').val(markerPosition.lat());
                         $('#lng').val(markerPosition.lng());
                 });
+*/
+
+		var mapOptions = { 
+					zoom: 16,
+					mapTypeId: google.maps.MapTypeId.ROADMAP,
+					center: new google.maps.LatLng(53.4239331, -7.940689799999973)
+				};
+
+		map = new google.maps.Map (document.getElementById ("map_canvas"), mapOptions);
+
+		marker = new google.maps.Marker ({position: new google.maps.LatLng(53.4239331, -7.940689799999973)});
+   		marker.setMap (map);
+   		marker.setDraggable (true);
+
+   		google.maps.event.addListener(marker, "dragend", function(event) {
+			var point = marker.getPosition();
+   			map.panTo(point);
+
+			$('#lat').val(point.lat());
+                        $('#lng').val(point.lng());
+    		});
 
                 if(navigator.geolocation) 
                 {
                         navigator.geolocation.getCurrentPosition(function(position) {
-                                var pos = new google.maps.LatLng(position.coords.latitude,
+                                var point = new google.maps.LatLng(position.coords.latitude,
                                                                          position.coords.longitude);
                                 //var map = addresspickerMap.map;
-                                //map.setCenter(pos);
+                                map.setCenter(point);
+				marker.setPosition(point);
+
+				$('#lat').val(point.lat());
+                        	$('#lng').val(point.lng());
                         });
                 }
         });
