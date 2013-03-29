@@ -103,6 +103,13 @@ function createUploader() {
                         $('#lng').val(point.lng());
     		});
 
+		google.maps.event.addListener(map, 'click', function(event) {
+            		marker.setPosition(event.latLng);
+
+			$('#lat').val(point.lat());
+                        $('#lng').val(point.lng());
+        	});
+
                 if(navigator.geolocation) 
                 {
                         navigator.geolocation.getCurrentPosition(function(position) {
