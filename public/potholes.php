@@ -14,7 +14,10 @@ if ($potholes)
 {
 ?>
 <div class="row-fluid">
-	<div class="span8">
+	<div class="span6">
+                <div id="map_canvas" class="potholes-map"></div>
+        </div>
+	<div class="span6">
 		<ul class="thumbnails">
 <?php
 	foreach($potholes as $pothole)
@@ -24,7 +27,7 @@ if ($potholes)
 		<li>
 			<div class="thumbnail">
 				<div class="pagination-centered">
-					<a href="/uploads/<?php echo $image->get('filename');?>"><img data-src="holder.js/300x300" alt="" src="/uploads/300x300_<?php echo $image->get('filename');?>"></a>
+					<a href="/uploads/<?php echo $image->get('filename');?>"><img data-src="holder.js/238x238" alt="" src="/uploads/238x238_<?php echo $image->get('filename');?>"></a>
 				</div>
 				<h5>Reported by <?php echo $pothole->get('nickname')?> on the <?php echo date('d/m/Y', $pothole->get('report_date')); ?></h5>
 				<p><?php echo $pothole->get('description')?></p>
@@ -59,9 +62,6 @@ if ($potholes)
 	}
 ?>
 	</div>
-        <div class="span4">
-                <div id="map_canvas" class="potholes-map"></div>
-        </div>
 </div>
 <script>
 var latlngs = <?php echo json_encode($latlngs); ?>;

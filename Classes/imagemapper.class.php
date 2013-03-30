@@ -38,9 +38,9 @@ class ImageMapper extends Mapper
 		$image->set('image_created', time());
 		$image->save();
 		
-		$source = $this->resizeImage($filename, $width, $height, 150, 150);
+		$source = $this->resizeImage($filename, $width, $height, 100, 100);
 
-		$source = $this->resizeImage($filename, $width, $height, 300, 300);
+		$source = $this->resizeImage($filename, $width, $height, 238, 238);
 
 		$source = $this->resizeImage($filename, $width, $height, 600, 600);
 	}

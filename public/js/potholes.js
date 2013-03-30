@@ -31,7 +31,7 @@ $(function() {
 				animation: google.maps.Animation.DROP,
 			});
 
-			marker.note = '<img src="/uploads/150x150_' + latlngs[i].imagename + '" /><a href="/pothole.php?pothole_id=' + latlngs[i].id + '">View</a>';
+			marker.note = '<img src="/uploads/100x100_' + latlngs[i].imagename + '" /><a href="/pothole.php?pothole_id=' + latlngs[i].id + '">View</a>';
 
 			google.maps.event.addListener(marker, 'click', function() {
 				infowindow.content = this.note;
