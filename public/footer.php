@@ -6,8 +6,9 @@
 	</div>
 	<div id="footer">
       		<div class="container">
-        		<p class="muted credit">Built by <a href="http://karlmonaghan.com">Karl Monaghan</a> from an idea by <a href="https://twitter.com/AaronMcAllorum">Aaron McAllorum</a>.&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/contact">Get in touch</a>&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/">About</a>&nbsp;|&nbsp;<a href="https://github.com/kmonaghan/irishpotholes.com">Code</a></p>
-      		</div>
+        		<p class="muted credit">Built by <a href="http://karlmonaghan.com">Karl Monaghan</a> from an idea by <a href="https://twitter.com/AaronMcAllorum">Aaron McAllorum</a>.&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/contact">Get in touch</a>&nbsp;|&nbsp;<a href="http://www.karlmonaghan.com/">About</a>&nbsp;|&nbsp;<a href="https://github.com/kmonaghan/irishpotholes.com">Code</a>&nbsp;|&nbsp; <a href="https://twitter.com/IrishPotholes" class="twitter-follow-button" data-show-count="false">Follow @IrishPotholes</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p>
+		</div>
     	</div>
 
 	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>

@@ -41,7 +41,7 @@
 
        @media (min-width: 985px) {
                 .potholes-map {
-                        width:500px;
+                        width:570px;
                         height:700px;
                 }
         }
@@ -80,3 +80,14 @@
       .alert-error .qq-upload-failed-text {
         display: inline;
       }
+
+	/* Social buttons */
+
+	ul.social-buttons li {
+		height: 25px;
+		vertical-align: top;
+	}
+
+	.twitter-follow-button {
+		vertical-align: middle;
+	}
