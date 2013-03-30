@@ -106,7 +106,10 @@ function createUploader() {
 		google.maps.event.addListener(map, 'click', function(event) {
             		marker.setPosition(event.latLng);
 
-			$('#lat').val(point.lat());
+			var point = marker.getPosition();
+                        map.panTo(point);
+
+                        $('#lat').val(point.lat());
                         $('#lng').val(point.lng());
         	});
 
