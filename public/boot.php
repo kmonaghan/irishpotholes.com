@@ -10,8 +10,11 @@ define('MYSQL_PASSWORD', 'PASSWORD');
 define('MAX_DIMENSION', 1024);
 define('UPLOAD_DIR', '/home/irishpotholes.com/public/uploads');
 
-define('VERSION', 6);
+define('VERSION', time());
 
-function __autoload($class_name) {
-	include '/home/irishpotholes.com/Classes/' . strtolower($class_name) . '.class.php';
+require_once '/home/irishpotholes.com/vendor/htmlpurifier/library/HTMLPurifier.auto.php';
+
+function __autoload($class) {
+	if (HTMLPurifier_Bootstrap::autoload($class)) return true;
+	return include '/home/irishpotholes.com/Classes/' . strtolower($class) . '.class.php';
 }

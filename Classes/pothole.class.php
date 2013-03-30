@@ -1,6 +1,4 @@
 <?php
-require_once '/home/irishpotholes.com/vendor/htmlpurifier/library/HTMLPurifier.auto.php';
-
 class Pothole extends Object
 {
 	protected $_table = 'pothole';
@@ -47,11 +45,11 @@ class Pothole extends Object
 		$result = true;
 		$this->_error = '';
 		
-		/*
+		
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('HTML.Allowed', 'b,i.em.strong');
 		$purifier = new HTMLPurifier($config);
-		*/
+		
 		if (filter_var($details['report-email'], FILTER_VALIDATE_EMAIL)) 
 		{
 			$this->_columns['email'] = $details['report-email'];
@@ -128,7 +126,7 @@ class Pothole extends Object
 
 		if (isset($details['report-nick']) && $details['report-nick'])
 		{
-			$this->_columns['nickname'] = $details['report-nick']; //$purifier->purify($details['report-nick']);
+			$this->_columns['nickname'] = $purifier->purify($details['report-nick']);
 		}
 		else
 		{
@@ -138,7 +136,7 @@ class Pothole extends Object
 		
 		if (isset($details['report-description']))
 		{
-			$this->_columns['description'] = $details['report-description']; //$purifier->purify($details['report-description']);
+			$this->_columns['description'] = $purifier->purify($details['report-description']);
 		}
 		return $result;
 	}
