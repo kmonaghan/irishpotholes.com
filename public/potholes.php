@@ -4,6 +4,7 @@ include 'header.php';
 
 $page = (isset($_GET['page']) && ($_GET['page'] > 1)) ? $_GET['page'] - 1 : 0;
 $perPage = (isset($_GET['count']) && ($_GET['count'] > 0) && ($_GET['count'] <= 20)) ? $_GET['count'] : 20;
+$perPage = 6;
 
 $mapper = new PotholeMapper();
 $potholes = $mapper->getAll($page, $perPage);
@@ -42,20 +43,26 @@ if ($potholes)
 <?php 
 	if ($pagination['pages'] > 1)
 	{
+		$start = ($pagination['currentPage'] <= 2) ? 0 : $pagination['currentPage'] - 2;
+		$totalShown = $start + (($pagination['pages'] >= 5) ? 5 : $pagination['pages']);
 ?>
 		<div class="pagination pagination-centered">
 			<ul>
-<?php if ($pagination['currentPage'] > 2) {?>
+<?php 	if ($pagination['currentPage'] >= 2) {?>
     				<li><a href="/potholes.php?page=<?php echo ($pagination['currentPage'] - 1); ?>">Prev</a></li>
-<?php }?>
-    				<li><a href="/potholes.php?page=">1</a></li>
-    				<li><a href="/potholes.php?page=">2</a></li>
-    				<li><a href="/potholes.php?page=">3</a></li>
-    				<li><a href="/potholes.php?page=">4</a></li>
-    				<li><a href="/potholes.php?page=">5</a></li>
-<?php if ($pagination['currentPage'] < $pagination['pages']) {?>
+<?php 
+	}
+	for ($start; $start < $totalShown; $start++)
+	{
+?>
+    				<li <?php if ($start == ($pagination['currentPage'] - 1)) echo 'class="active"'; ?>><a href="/potholes.php?page=<?php echo $start; ?>"><?php echo $start + 1; ?></a></li>
+<?php 
+	}
+	if ($pagination['currentPage'] < $pagination['pages']) 
+	{
+?>
     				<li><a href="/potholes.php?page=<?php echo ($pagination['currentPage'] + 1); ?>">Next</a></li>
-<?php }?>
+<?php 	}?>
 			</ul>
 		</div>
 <?php

@@ -63,7 +63,7 @@ class Mapper
 		$result = $mysql->select($query, true);
 
 		$result['perPage'] = $perPage;
-		$result['currentPage'] = ($page + 1) * $perPage;
+		$result['currentPage'] = ($page + 1);
 		
 		if ($result['total'] > $perPage)
 		{
