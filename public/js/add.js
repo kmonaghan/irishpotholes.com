@@ -26,8 +26,8 @@ function createUploader() {
                 onComplete: function(id, name, response) {
                                         if (response.success)
                                         {
-                        $('#pothole-form').append('<input type="hidden" name="images[]" value="' + response.filename + '" />');
-			$('#add-pothole-button').removeAttr("disabled");
+                        			$('#pothole-form').append('<input type="hidden" name="images[]" value="' + response.filename + '" />');
+						$('#add-pothole-button').removeAttr("disabled");
                                         }
                 }
             }
@@ -36,6 +36,9 @@ function createUploader() {
 
         $(function() {
                 createUploader();
+
+		$(function () { $("input[type=hidden]").jqBootstrapValidation(); } );
+
 //See: http://stackoverflow.com/a/3605248/806442
 //Sob.  I hate JS dates.
 		var currentDate = new Date();
