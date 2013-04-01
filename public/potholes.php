@@ -43,7 +43,7 @@ if ($potholes)
 <?php 
 	if ($pagination['pages'] > 1)
 	{
-		$start = ($pagination['currentPage'] <= 2) ? 0 : $pagination['currentPage'] - 2;
+		$start = ($pagination['currentPage'] <= 2) ? 1 : $pagination['currentPage'] - 2;
 		$totalShown = $start + (($pagination['pages'] >= 5) ? 5 : $pagination['pages']);
 ?>
 		<div class="pagination pagination-centered">
@@ -55,7 +55,7 @@ if ($potholes)
 	for ($start; $start < $totalShown; $start++)
 	{
 ?>
-    				<li <?php if ($start == ($pagination['currentPage'] - 1)) echo 'class="active"'; ?>><a href="/potholes.php?page=<?php echo $start; ?>"><?php echo $start + 1; ?></a></li>
+    				<li <?php if ($start == ($pagination['currentPage'])) echo 'class="active"'; ?>><a href="/potholes.php?page=<?php echo $start; ?>"><?php echo $start; ?></a></li>
 <?php 
 	}
 	if ($pagination['currentPage'] < $pagination['pages']) 
