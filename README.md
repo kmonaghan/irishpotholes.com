@@ -3,7 +3,7 @@ irishpotholes.com
 
 ## License
 
-KMWordPress is available under the MIT license.
+Irishpotholes.com is available under the MIT license.
 
 Copyright (c) 2013 Karl Monaghan (http://karlmonaghan.com/)
 
