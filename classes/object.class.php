@@ -12,7 +12,7 @@ class Object
 
     protected $_error = false;
 
-    public function __construct($id = false)
+    private function __construct($id = false)
     {
         if ($id) {
             $this->load($id);
