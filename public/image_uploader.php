@@ -8,14 +8,11 @@ $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 $result = $uploader->handleUpload(UPLOAD_DIR);
 
 $output = array('success' => false);
-if (isset($result['success']))
-{
-	$output['success'] = true;
-	$output['filename'] = $uploader->getUploadName();
-}
-else
-{
-	$output['message'] = $result['error'];
+if (isset($result['success'])) {
+    $output['success'] = true;
+    $output['filename'] = $uploader->getUploadName();
+} else {
+    $output['message'] = $result['error'];
 }
 
 header('Cache-Control: no-cache, must-revalidate');

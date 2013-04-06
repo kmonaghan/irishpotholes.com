@@ -8,13 +8,14 @@ define('MYSQL_USER', 'USERNAME');
 define('MYSQL_PASSWORD', 'PASSWORD');
 
 define('MAX_DIMENSION', 1024);
-define('UPLOAD_DIR', '/home/irishpotholes.com/public/uploads');
+define('UPLOAD_DIR', realpath('uploads'));
 
 define('VERSION', time());
 
-require_once '/home/irishpotholes.com/vendor/htmlpurifier/library/HTMLPurifier.auto.php';
+require_once realpath('../vendor/htmlpurifier/library/HTMLPurifier.auto.php');
 
-function __autoload($class) {
-	if (HTMLPurifier_Bootstrap::autoload($class)) return true;
-	return include '/home/irishpotholes.com/Classes/' . strtolower($class) . '.class.php';
+function __autoload($class)
+{
+    if (HTMLPurifier_Bootstrap::autoload($class)) return true;
+    return include realpath('../Classes/' . strtolower($class) . '.class.php');
 }
