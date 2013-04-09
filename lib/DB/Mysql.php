@@ -72,6 +72,13 @@ class Mysql
         return $result;
     }
 
+    public function deleteQuery($table, $index, $index)
+    {
+	$query = "DELETE FROM {$table} WHERE {$index} = {$index} LIMIT 1";
+
+	return $query;
+    }
+
     public function buildSelectQuery($table, $columns, $where = false, $limit = false, $order = false)
     {
         $queryString = '';

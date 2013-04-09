@@ -89,7 +89,7 @@ class BaseClass
     {
         $mysql = \DB\Mysql::getInstance();
 
-        $query = "DELETE FROM {$this->_table} WHERE {$this->_index} = {$this->_columns[$this->_index]} LIMIT 1";
+	$query = $mysql->deleteQuery($this->_table, $this->_index, $this->_columns[$this->_index]);
 
         return $mysql->execute($query);
     }
