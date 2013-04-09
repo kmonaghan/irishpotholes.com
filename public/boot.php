@@ -1,20 +1,31 @@
 <?php
 date_default_timezone_set('Europe/Dublin');
 
-define('MYSQLI_HOST', 'localhost');
-define('MYSQL_PORT', 3306);
-define('MYSQL_DATABASE', 'potholes');
-define('MYSQL_USER', 'USERNAME');
-define('MYSQL_PASSWORD', 'PASSWORD');
-
-define('MAX_DIMENSION', 1024);
-define('UPLOAD_DIR', '/home/irishpotholes.com/public/uploads');
-
-define('VERSION', time());
-
-require_once '/home/irishpotholes.com/vendor/htmlpurifier/library/HTMLPurifier.auto.php';
-
-function __autoload($class) {
-	if (HTMLPurifier_Bootstrap::autoload($class)) return true;
-	return include '/home/irishpotholes.com/Classes/' . strtolower($class) . '.class.php';
+if(file_exists(realpath('../config/dbconf.php'))) {
+    include_once(realpath('../config/dbconf.php'));
+} else {
+    echo "You don't have a dbconf.php in the config folder";
+    exit();
 }
+
+if(MYSQL_USER=='USERNAME**') {
+    echo "You need to change your MySQL user credentials";
+    exit();
+}
+
+if(MYSQL_DATABASE=="DATABASE**") {
+    echo "You need to set the correct Database name";
+    exit();
+}
+
+include_once(realpath('../config/misc.php'));
+
+require_once('../vendor/htmlpurifier/library/HTMLPurifier.auto.php');
+
+spl_autoload_register(function ($class) {
+    if (HTMLPurifier_Bootstrap::autoload($class)) return true;
+
+    $pathToClass = str_replace('\\',DIRECTORY_SEPARATOR,$class);
+
+	return include_once(realpath('../lib/'.$pathToClass.'.php'));
+});
