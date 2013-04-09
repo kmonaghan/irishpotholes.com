@@ -1,4 +1,7 @@
 <?php
+
+namespace Base;
+
 class Mapper
 {
     protected static $instance;
@@ -18,7 +21,7 @@ class Mapper
 
     public function fetchResults($query, $single = false)
     {
-        $mysql = Mysql::getInstance();
+        $mysql = \DB\Mysql::getInstance();
 
         $results = $mysql->select($query, $single);
 
@@ -39,7 +42,7 @@ class Mapper
 
     public function getAll($page = 0, $perPage = 20)
     {
-        $mysql = Mysql::getInstance();
+        $mysql = \DB\Mysql::getInstance();
 
         $limit = array(($page * $perPage),  $perPage);
 
@@ -50,7 +53,7 @@ class Mapper
 
     public function getPagination($page = 0, $perPage = 20)
     {
-        $mysql = Mysql::getInstance();
+        $mysql = \DB\Mysql::getInstance();
 
         $query = $mysql->buildSelectQuery($this->_table, array('count(*) as total'));
 

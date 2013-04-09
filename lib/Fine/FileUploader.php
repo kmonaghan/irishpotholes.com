@@ -1,8 +1,11 @@
 <?php
+
+namespace Fine;
+
 /**
  * Class that encapsulates the file-upload internals
  */
-class qqFileUploader
+class FileUploader
 {
     private $allowedExtensions;
     private $sizeLimit;
@@ -32,9 +35,9 @@ class qqFileUploader
         if (!isset($_SERVER['CONTENT_TYPE'])) {
             $this->file = false;
         } elseif (strpos(strtolower($_SERVER['CONTENT_TYPE']), 'multipart/') === 0) {
-            $this->file = new qqUploadedFileForm();
+            $this->file = new UploadedFileForm();
         } else {
-            $this->file = new qqUploadedFileXhr();
+            $this->file = new UploadedFileXhr();
         }
     }
 
@@ -140,7 +143,7 @@ class qqFileUploader
         $this->uploadName = md5($filename . time()) . $ext;
 
         if ($this->file->save($uploadDirectory . DIRECTORY_SEPARATOR . $this->uploadName)) {
-            $mapper = new ImageMapper();
+            $mapper = new \Pothole\ImageMapper();
 
             $mapper->addImage($this->uploadName);
 

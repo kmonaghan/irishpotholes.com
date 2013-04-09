@@ -1,6 +1,5 @@
 .buildpath
 .project
 .settings
-*.swp
+*.sw?
 public/uploads/*
-config/*

@@ -1,6 +1,6 @@
 <?php
 
-namespace Pothole;
+namespace Base;
 
 class BaseClass 
 {
@@ -15,7 +15,7 @@ class BaseClass
 
     protected $_error = false;
 
-    private function __construct($id = false)
+    public function __construct($id = false)
     {
         if ($id) {
             $this->load($id);
@@ -35,7 +35,7 @@ class BaseClass
     {
         $index = ($index) ? $index : $this->_index;
 
-        $mysql = Mysql::getInstance();
+        $mysql = \DB\Mysql::getInstance();
 
         $where = array(array($index, 'equal', $id));
 
@@ -56,7 +56,7 @@ class BaseClass
             return false;
         }
 
-        $mysql = Mysql::getInstance();
+        $mysql = \Db\Mysql::getInstance();
 
         $columns = $this->_columns;
 
@@ -87,7 +87,7 @@ class BaseClass
 
     public function delete()
     {
-        $mysql = Mysql::getInstance();
+        $mysql = \DB\Mysql::getInstance();
 
         $query = "DELETE FROM {$this->_table} WHERE {$this->_index} = {$this->_columns[$this->_index]} LIMIT 1";
 

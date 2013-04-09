@@ -1,5 +1,8 @@
 <?php
-class Pothole extends Object
+
+namespace Pothole;
+
+class Pothole extends \Base\BaseClass
 {
     protected $_table = 'pothole';
     protected $_index = 'pothole_id';
@@ -40,9 +43,9 @@ class Pothole extends Object
         $result = true;
         $this->_error = '';
 
-        $config = HTMLPurifier_Config::createDefault();
+        $config = \HTMLPurifier_Config::createDefault();
         $config->set('HTML.Allowed', 'b,i.em.strong');
-        $purifier = new HTMLPurifier($config);
+        $purifier = new \HTMLPurifier($config);
 
         if (filter_var($details['report-email'], FILTER_VALIDATE_EMAIL)) {
             $this->_columns['email'] = $details['report-email'];
