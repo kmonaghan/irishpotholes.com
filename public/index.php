@@ -5,7 +5,7 @@ include 'header.php';
 $message = false;
 
 if (count($_POST)) {
-    $pothole = new Pothole();
+    $pothole = new \Pothole\Pothole();
 
     if ($pothole->create($_POST)) {
         header('Location: /pothole.php?pothole_id=' . $pothole->get('pothole_id'));

@@ -4,9 +4,8 @@ include 'boot.php';
 $allowedExtensions = array('png','jpg','jpeg');
 $sizeLimit = 10 * 1024 * 1024;
 
-$uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
+$uploader = new \Fine\FileUploader($allowedExtensions, $sizeLimit);
 $result = $uploader->handleUpload(UPLOAD_DIR);
-
 $output = array('success' => false);
 if (isset($result['success'])) {
     $output['success'] = true;

@@ -2,7 +2,7 @@
 include 'boot.php';
 include 'header.php';
 
-$pothole = new Pothole($_GET['pothole_id']);
+$pothole = new \Pothole\Pothole($_GET['pothole_id']);
 
 if (!$pothole->get('pothole_id')) {
     header('Location: /404.php', false, 404);

@@ -6,7 +6,7 @@ $page = (isset($_GET['page']) && ($_GET['page'] > 1)) ? $_GET['page'] - 1 : 0;
 $perPage = (isset($_GET['count']) && ($_GET['count'] > 0) && ($_GET['count'] <= 20)) ? $_GET['count'] : 20;
 $perPage = 6;
 
-$mapper = new PotholeMapper();
+$mapper = new \Pothole\PotholeMapper();
 $potholes = $mapper->getAll($page, $perPage);
 $pagination = $mapper->getPagination($page, $perPage);
 
