@@ -5,6 +5,11 @@
 	Blog: http://karlmonaghan.com
 	From: Dublin, Ireland 
 
+    Chief Bottlewasher: Barry O'Mahony
+    Contact: the.ewok AT gmail DOT com
+    Twitter: @TheEwok
+    From: Colorado Springs, Colorado, USA
+
 /* SITE */
 	Language:English
 	Components: Bootstrap
