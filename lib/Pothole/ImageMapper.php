@@ -1,13 +1,16 @@
 <?php
-class ImageMapper extends Mapper
+
+namespace Pothole;
+
+class ImageMapper extends \Base\Mapper
 {
     protected $_table = 'image';
     protected $_index = 'image_id';
-    protected $_class = 'Image';
+    protected $_class = '\\Pothole\\Image';
 
     public function getByName($filename)
     {
-        $mysql = Mysql::getInstance();
+        $mysql = \DB\Mysql::getInstance();
 
         $where = array(array('filename', 'equal', $filename));
 
@@ -18,7 +21,7 @@ class ImageMapper extends Mapper
 
     public function getByPothole($potholeId, $single = false)
     {
-        $mysql = Mysql::getInstance();
+        $mysql = \DB\Mysql::getInstance();
 
         $where = array(array('pothole_id', 'equal', $potholeId));
 

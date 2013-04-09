@@ -1,8 +1,11 @@
 <?php
+
+namespace Fine;
+
 /**
  * Handle file uploads via regular form post (uses the $_FILES array)
  */
-class qqUploadedFileForm
+class UploadedFileForm
 {
     /**
      * Save the file to the specified path
