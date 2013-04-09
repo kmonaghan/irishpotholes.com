@@ -1,5 +1,8 @@
 <?php
-class Object
+
+namespace Pothole;
+
+class BaseClass 
 {
     protected static $instance;
 
