@@ -1,8 +1,11 @@
 <?php
+
+namespace Fine;
+
 /**
  * Handle file uploads via XMLHttpRequest
  */
-class qqUploadedFileXhr
+class UploadedFileXhr
 {
     /**
      * Save the file to the specified path

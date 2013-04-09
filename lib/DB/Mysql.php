@@ -1,5 +1,8 @@
 <?php
-class mysql
+
+namespace DB;
+
+class Mysql
 {
     private static $instance;
 
@@ -26,7 +29,7 @@ class mysql
 
     private function _connect()
     {
-        $this->_mysqli = new mysqli(MYSQLI_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE, MYSQL_PORT);
+        $this->_mysqli = new \mysqli(MYSQLI_HOST, MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE, MYSQL_PORT);
 
         if ($this->_mysqli->connect_errno) {
             die("Failed to connect to MySQL: (" . $this->_mysqli->connect_errno . ") " . $this->_mysqli->connect_error);

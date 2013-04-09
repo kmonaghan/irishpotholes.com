@@ -2,7 +2,7 @@
 
 namespace Pothole;
 
-class Image extends BaseClass 
+class Image extends \Base\BaseClass 
 {
     protected $_table = 'image';
     protected $_index = 'image_id';
