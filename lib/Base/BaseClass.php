@@ -10,6 +10,7 @@ class BaseClass
     protected $_index;
 
     protected $_columns = array();
+    protected $_publicColumns = array();
 
     protected $_dirty = false;
 
@@ -108,6 +109,17 @@ class BaseClass
         return $this->_columns;
     }
 
+    public function getPublic()
+    {
+	$return = array();
+
+	foreach ($this->_publicColumns as $allowed) {
+		$return[$allowed] = $this->_columns[$allowed];
+	}
+
+	return $return;
+    }
+
     public function set($column, $value)
     {
         $this->_columns[$column] = $value;
@@ -122,6 +134,6 @@ class BaseClass
 
     public function toJSON()
     {
-        return json_encode($this->_columns);
+        return json_encode($this->getPublic());
     }
 }
