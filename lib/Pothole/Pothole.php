@@ -29,7 +29,6 @@ class Pothole extends \Base\BaseClass
 
                 if ($file) {
                     $file->set('pothole_id', $potholeId);
-
                     $file->save();
                 }
             }
@@ -50,16 +49,14 @@ class Pothole extends \Base\BaseClass
         if (filter_var($details['report-email'], FILTER_VALIDATE_EMAIL)) {
             $this->_columns['email'] = $details['report-email'];
         } else {
-            $this->_error = 'Invalid Email/n';
-            $result = false;
+            throw new Exception('Invalid Email');
         }
 
         $now = time();
         $potholedate = strtotime($details['report-date']);
 
         if ($potholedate > $now) {
-            $this->_error .= 'Date is in the future!/n';
-            $result = false;
+            throw new Exception('Date is in the future!');
         } else {
             $this->_columns['report_date'] = $potholedate;
         }
@@ -74,8 +71,7 @@ class Pothole extends \Base\BaseClass
         if (filter_var($details['lat'], FILTER_VALIDATE_FLOAT, $options)) {
             $this->_columns['lat'] = $details['lat'];
         } else {
-            $this->_error .= "Invalid latitude/n";
-            $result = false;
+            throw new Exception("Invalid latitude");
         }
 
         $options = array(
@@ -88,7 +84,7 @@ class Pothole extends \Base\BaseClass
         if (filter_var($details['lng'], FILTER_VALIDATE_FLOAT, $options)) {
             $this->_columns['lng'] = $details['lng'];
         } else {
-            $this->_error .= "Invalid longitude/n";
+            throw new Exception("Invalid longitude");
             $result = false;
         }
 
@@ -102,15 +98,13 @@ class Pothole extends \Base\BaseClass
         if (filter_var($details['bad'], FILTER_VALIDATE_INT, $options)) {
             $this->_columns['rating'] = $details['bad'];
         } else {
-            $this->_error .= "Please rate the pothole/n";
-            $result = false;
+            throw new Exception("Invalid pothole rating");
         }
 
         if (isset($details['report-nick']) && $details['report-nick']) {
             $this->_columns['nickname'] = $purifier->purify($details['report-nick']);
         } else {
-            $this->_error .= "Please enter a nickname/n";
-            $result = false;
+            throw new Exception("Please enter a nickname");
         }
 
         if (isset($details['report-description'])) {

@@ -7,13 +7,25 @@ namespace Fine;
  */
 class UploadedFileForm
 {
+    private $fileFieldName = 'qqfile';
+
+    public function __construct() 
+    {
+        if(!isset($_FILES['qqfile'])) {
+            if(isset($_FILES['image'])) {
+                $this->fileFieldName = 'image';
+            } else {
+                throw new \Pothole\Exception('No image uploaded');
+            }
+        }
+    }
     /**
      * Save the file to the specified path
      * @return boolean TRUE on success
      */
     public function save($path)
     {
-        return move_uploaded_file($_FILES['qqfile']['tmp_name'], $path);
+        return move_uploaded_file($_FILES[$this->fileFieldName]['tmp_name'], $path);
     }
 
     /**
@@ -22,7 +34,7 @@ class UploadedFileForm
      */
     public function getName()
     {
-        return $_FILES['qqfile']['name'];
+        return $_FILES[$this->fileFieldName]['name'];
     }
 
     /**
@@ -31,6 +43,6 @@ class UploadedFileForm
      */
     public function getSize()
     {
-        return $_FILES['qqfile']['size'];
+        return $_FILES[$this->fileFieldName]['size'];
     }
 }
