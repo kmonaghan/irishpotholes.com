@@ -7,6 +7,15 @@ class Pothole extends \Base\BaseClass
     protected $_table = 'pothole';
     protected $_index = 'pothole_id';
 
+    protected $_publicColumns = array('pothole_id',
+					'nickname',
+					'description',
+					'rating',
+					'lat',
+					'lng',
+					'report_date',
+					);
+
     public function create($details)
     {
         if (!$this->_validate($details)) {
