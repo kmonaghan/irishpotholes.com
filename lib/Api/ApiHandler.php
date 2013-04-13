@@ -57,7 +57,7 @@ class ApiHandler
             $page = isset($this->get['page']) ? $this->get['page'] : 0;
             $perPage = isset($this->get['perPage']) ? $this->get['perPage'] : 20;
 
-            $perPage = max($perPage,50);
+            $perPage = min($perPage,50);
 
             $potholes = $potholeMapper->getAll($page,$perPage);
 
