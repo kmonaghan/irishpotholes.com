@@ -1,4 +1,8 @@
 RewriteEngine On
+RewriteBase /
 
 RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
 RewriteRule ^(.*)$ http://%1/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^api\.(.*)$ [NC]
+RewriteRule ^(.*)$ api.php?q=$1 [L,QSA]

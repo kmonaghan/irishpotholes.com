@@ -30,6 +30,11 @@ class ImageMapper extends \Base\Mapper
         return $this->fetchResults($query, $single);
     }
 
+    public function deleteImage($imageId) {
+        $mysql = \DB\Mysql::getInstance();
+        $mysql->execute($mysql->deleteQuery($this->_table,$this->_index,$imageId));
+    }
+
     public function addImage($filename)
     {
         list($width, $height) = getimagesize(UPLOAD_DIR . '/' . $filename);
