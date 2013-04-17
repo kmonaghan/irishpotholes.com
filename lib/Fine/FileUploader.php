@@ -122,8 +122,8 @@ class FileUploader
 
         $pathinfo = pathinfo($this->file->getName());
         $filename = $pathinfo['filename'];
-        //$filename = md5(uniqid());
-        $ext = @$pathinfo['extension'];		// hide notices if extension is empty
+
+        $ext = isset($pathinfo['extension'])? $pathinfo['extension'] : null;
 
         if ($this->allowedExtensions && !in_array(strtolower($ext), $this->allowedExtensions)) {
             $these = implode(', ', $this->allowedExtensions);
