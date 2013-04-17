@@ -6,15 +6,13 @@ class BaseClass
 {
     protected static $instance;
 
-    protected $_table;
-    protected $_index;
+    protected $table;
+    protected $index;
 
-    protected $_columns = array();
-    protected $_publicColumns = array();
+    protected $columns = array();
+    protected $publicColumns = array();
 
-    protected $_dirty = false;
-
-    protected $_error = false;
+    protected $error = false;
 
     public function __construct($id = false)
     {
@@ -34,63 +32,63 @@ class BaseClass
 
     public function load($id, $index = false)
     {
-        $index = ($index) ? $index : $this->_index;
+        $index = ($index) ? $index : $this->index;
 
         $mysql = \DB\Mysql::getInstance();
 
         $where = array(array($index, 'equal', $id));
 
-        $query = $mysql->buildSelectQuery($this->_table, array('*'), $where);
+        $query = $mysql->buildSelectQuery($this->table, array('*'), $where);
 
         $result = $mysql->select($query, true);
 
         if ($result) {
             foreach ($result as $key => $value) {
-                $this->_columns[$key] = $value;
+                $this->columns[$key] = $value;
             }
         }
     }
 
     public function save()
     {
-        if (!count($this->_columns)) {
+        if (!count($this->columns)) {
             return false;
         }
 
         $mysql = \Db\Mysql::getInstance();
 
-        $columns = $this->_columns;
+        $columns = $this->columns;
 
         foreach ($columns as $key => $value) {
             $values[$key] = array($key, 'equal', $value);
         }
 
-        if (isset($this->_columns[$this->_index])) {
-            $where = array(array($this->_index, 'equal', $this->_columns[$this->_index]));
+        if (isset($this->columns[$this->index])) {
+            $where = array(array($this->index, 'equal', $this->columns[$this->index]));
 
-            unset($values[$this->_index]);
+            unset($values[$this->index]);
 
-            $query = $mysql->updateQuery($this->_table, $values, $where);
+            $query = $mysql->updateQuery($this->table, $values, $where);
         } else {
-            $query = $mysql->insertQuery($this->_table, $values);
+            $query = $mysql->insertQuery($this->table, $values);
         }
 
         if (!$mysql->execute($query)) {
             return false;
         }
 
-        if (!isset($this->_columns[$this->_index])) {
-            $this->_columns[$this->_index] = $mysql->lastInsertId();
+        if (!isset($this->columns[$this->index])) {
+            $this->columns[$this->index] = $mysql->lastInsertId();
         }
 
-        return $this->_columns[$this->_index];
+        return $this->columns[$this->index];
     }
 
     public function delete()
     {
         $mysql = \DB\Mysql::getInstance();
 
-	    $query = $mysql->deleteQuery($this->_table, $this->_index, $this->_columns[$this->_index]);
+	    $query = $mysql->deleteQuery($this->table, $this->index, $this->columns[$this->index]);
 
         $result = $mysql->execute($query);
 
@@ -105,8 +103,8 @@ class BaseClass
 
     public function get($column)
     {
-        if (isset($this->_columns[$column])) {
-            return $this->_columns[$column];
+        if (isset($this->columns[$column])) {
+            return $this->columns[$column];
         }
 
         return false;
@@ -114,15 +112,15 @@ class BaseClass
 
     public function getAll()
     {
-        return $this->_columns;
+        return $this->columns;
     }
 
     public function getPublic()
     {
 	$return = array();
 
-	foreach ($this->_publicColumns as $allowed) {
-		$return[$allowed] = $this->_columns[$allowed];
+	foreach ($this->publicColumns as $allowed) {
+		$return[$allowed] = $this->columns[$allowed];
 	}
 
 	return $return;
@@ -130,14 +128,12 @@ class BaseClass
 
     public function set($column, $value)
     {
-        $this->_columns[$column] = $value;
-
-        $this->_dirty = true;
+        $this->columns[$column] = $value;
     }
 
     public function getError()
     {
-        return $this->_error;
+        return $this->error;
     }
 
     public function toJSON()

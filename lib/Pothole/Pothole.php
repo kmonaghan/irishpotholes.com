@@ -4,10 +4,10 @@ namespace Pothole;
 
 class Pothole extends \Base\BaseClass
 {
-    protected $_table = 'pothole';
-    protected $_index = 'pothole_id';
+    protected $table = 'pothole';
+    protected $index = 'pothole_id';
 
-    protected $_publicColumns = array('pothole_id',
+    protected $publicColumns = array('pothole_id',
 					'nickname',
 					'description',
 					'rating',
@@ -15,6 +15,8 @@ class Pothole extends \Base\BaseClass
 					'lng',
 					'report_date',
 					);
+
+    protected $images = false;
 
     public function create($details)
     {
