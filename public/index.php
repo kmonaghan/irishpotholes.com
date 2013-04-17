@@ -28,7 +28,7 @@ if (count($_POST)) {
                         <label class="visible-desktop">A nickname</label>
                         <input class="input-xlarge" type="text" id="report-nick" name="report-nick" required placeholder="Nickname">
                     </div>
-                    <div class="control-group" style="width:300px">
+                    <div class="control-group">
                         <label>Where's the pothole?</label>
                         <div>
                                 <div id="map_canvas" style="width:100%; height:100%"></div>
