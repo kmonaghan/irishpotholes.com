@@ -127,9 +127,14 @@ class Pothole extends \Base\BaseClass
 
     public function getImages()
     {
-        $mapper = new ImageMapper();
+	if (!$this->images)
+	{
+        	$mapper = new ImageMapper();
 
-        return $mapper->getByPothole($this->get('pothole_id'));
+        	$this->images = $mapper->getByPothole($this->get('pothole_id'));
+	}
+
+	return $this->images;
     }
 
     public function getFirstImage()
@@ -137,5 +142,20 @@ class Pothole extends \Base\BaseClass
         $mapper = new ImageMapper();
 
         return $mapper->getByPothole($this->get('pothole_id'), true);
+    }
+
+    public function getPublic()
+    {
+	$return = parent::getPublic();
+
+	$this->getImages();
+
+	$return['images'] = array();
+	foreach ($this->images as $image)
+	{
+		$return['images'][] = $image->getPublic();
+	}
+
+	return $return;
     }
 }
